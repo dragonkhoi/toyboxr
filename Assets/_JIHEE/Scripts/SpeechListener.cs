@@ -8,17 +8,15 @@ public class SpeechListener : MonoBehaviour
 {
 
 
-    //[SerializeField]
-    //private Text m_Hypotheses;
+    [SerializeField]
+    private Text RecognizedText;
 
-
-    //[SerializeField]
-    //private Text m_Recognitions;
+    [SerializeField]
+    private Text ExtractedText;
 
     private DictationRecognizer m_DictationRecognizer;
 
     List<string> recognitions = new List<string>();
-
 
     void Start()
     {
@@ -29,6 +27,7 @@ public class SpeechListener : MonoBehaviour
             Debug.LogFormat("Dictation result: {0}", text);
             //m_Recognitions.text += text + "\n";
             recognitions.Add(text);
+            AddToText(RecognizedText, recognitions);
         };
 
         m_DictationRecognizer.DictationHypothesis += (text) =>
@@ -51,6 +50,16 @@ public class SpeechListener : MonoBehaviour
 
         m_DictationRecognizer.Start();
 
-        Debug.Log("After start: " + m_DictationRecognizer.Status.ToString());
+        //Debug.Log("After start: " + m_DictationRecognizer.Status.ToString());
+    }
+
+    void AddToText(Text textObject, List<string> strings)
+    {
+        textObject.text = "Recognized phrases: \n";
+        foreach (string s in strings)
+        {
+            textObject.text += s + "\n";
+        }
+        //textObject.text = 
     }
 }
