@@ -20,7 +20,10 @@ public class FollowTransformNetwork : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = toFollow.position;
-        transform.rotation = toFollow.rotation;
+        if (toFollow != null)
+        {
+            transform.position = toFollow.position;
+            transform.rotation = toFollow.rotation;
+        }
     }
 }

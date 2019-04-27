@@ -42,7 +42,7 @@ public class ToyboxNetworkingManager : MonoBehaviourPunCallbacks
 
     public void SpawnAvatar()
     {
-        GameObject tbna = PhotonNetwork.Instantiate("ToyBoxNetworkedAvatar", spawnPositions[0].position, Quaternion.identity);
+        GameObject tbna = PhotonNetwork.Instantiate("ToyBoxNetworkedAvatar", spawnPositions[PhotonNetwork.PlayerList.Length].position, Quaternion.identity);
         ToyboxNetworkedAvatar networkedAvatar = tbna.GetComponent<ToyboxNetworkedAvatar>();
         networkedAvatar.lHandFollow.SetTransform(lHandAnchor);
         networkedAvatar.rHandFollow.SetTransform(rHandAnchor);
