@@ -6,20 +6,21 @@ using UnityEngine.Windows.Speech;
 
 public class SpeechListener : MonoBehaviour
 {
+    // Reference script that spawns the actual prefab
+    //public ToySpawner toySpawner;
 
-
-    [SerializeField]
-    private Text RecognizedText;
-
-    [SerializeField]
-    private Text ExtractedText;
+    public TextAsset keywordsFile;
+    List<string> keywords;
 
     private DictationRecognizer m_DictationRecognizer;
 
     List<string> recognitions = new List<string>();
+    List<string> extractions = new List<string>();
 
     void Start()
     {
+        keywords = new List<string>(keywordsFile.text.Split('\n'));
+
         m_DictationRecognizer = new DictationRecognizer();
 
         m_DictationRecognizer.DictationResult += (text, confidence) =>
@@ -27,13 +28,12 @@ public class SpeechListener : MonoBehaviour
             Debug.LogFormat("Dictation result: {0}", text);
             //m_Recognitions.text += text + "\n";
             recognitions.Add(text);
-            AddToText(RecognizedText, recognitions);
+            SearchFromKeywords(text);
         };
 
         m_DictationRecognizer.DictationHypothesis += (text) =>
         {
             Debug.LogFormat("Dictation hypothesis: {0}", text);
-            //m_Hypotheses.text += text + Env;
         };
 
         m_DictationRecognizer.DictationComplete += (completionCause) =>
@@ -46,13 +46,27 @@ public class SpeechListener : MonoBehaviour
         {
             Debug.LogErrorFormat("Dictation error: {0}; HResult = {1}.", error, hresult);
         };
-        Debug.Log("Before start: " + m_DictationRecognizer.Status.ToString());
 
         m_DictationRecognizer.Start();
-
-        //Debug.Log("After start: " + m_DictationRecognizer.Status.ToString());
     }
 
+    void SearchFromKeywords(string newString) {
+        string[] bagOfWords = newString.Split(' ');
+        foreach(string s in bagOfWords) {
+            foreach (string keyword in keywords)
+            {
+                if (s.Trim().Equals(keyword.Trim()))
+                {
+                    Debug.Log("Found match: " + keyword.Trim() + "\n");
+                    extractions.Add(s);
+                    // Invoke function on that class that triggers spawning
+                    // toySpawner.SpawnNewObject(keyword);
+                }
+            }
+        }
+    }
+
+    /*
     void AddToText(Text textObject, List<string> strings)
     {
         textObject.text = "Recognized phrases: \n";
@@ -60,6 +74,6 @@ public class SpeechListener : MonoBehaviour
         {
             textObject.text += s + "\n";
         }
-        //textObject.text = 
     }
+    */
 }
