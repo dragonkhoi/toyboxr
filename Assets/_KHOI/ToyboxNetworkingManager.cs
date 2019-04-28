@@ -44,8 +44,19 @@ public class ToyboxNetworkingManager : MonoBehaviourPunCallbacks
     {
         GameObject tbna = PhotonNetwork.Instantiate("ToyBoxNetworkedAvatar", spawnPositions[PhotonNetwork.PlayerList.Length].position, Quaternion.identity);
         ToyboxNetworkedAvatar networkedAvatar = tbna.GetComponent<ToyboxNetworkedAvatar>();
+        if (networkedAvatar.GetComponent<PhotonView>().IsMine)
+        {
+            networkedAvatar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+        }
         networkedAvatar.lHandFollow.SetTransform(lHandAnchor);
         networkedAvatar.rHandFollow.SetTransform(rHandAnchor);
         networkedAvatar.headFollow.SetTransform(head);
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+        Debug.Log("PUN DISCONNECTED");
+        PhotonNetwork.ConnectUsingSettings();
     }
 }
