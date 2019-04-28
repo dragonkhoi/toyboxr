@@ -18,20 +18,25 @@ public class SpeechListener : MonoBehaviour
 
     List<string> recognitions = new List<string>();
     List<string> extractions = new List<string>();
+    [System.Serializable]
+    public class MyListClass : UnityEvent<List<string>>
+    {
 
+    }
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             keywords = new HashSet<string>(keywordsFile.text.Split('\n'));
+            keywordsDetected = new MyListClass();
         }
     }
 
     void Start()
     {
         m_DictationRecognizer = new DictationRecognizer();
-
+        m_DictationRecognizer.AutoSilenceTimeoutSeconds = 5;
         m_DictationRecognizer.DictationResult += (text, confidence) =>
         {
             Debug.LogFormat("Dictation result: {0}", text);
@@ -57,6 +62,15 @@ public class SpeechListener : MonoBehaviour
         };
 
         m_DictationRecognizer.Start();
+    }
+
+    private void Update()
+    {
+        if (m_DictationRecognizer.Status != SpeechSystemStatus.Running)
+        {
+            Debug.Log("Dictaion failed for some reason. restarting.");
+            m_DictationRecognizer.Start();
+        }
     }
 
     void SearchFromKeywords(string newString) {

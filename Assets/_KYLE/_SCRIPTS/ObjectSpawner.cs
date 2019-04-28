@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ObjectSpawner : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class ObjectSpawner : MonoBehaviour
 
     void OnKeywordDetected(List<string> foundWords)
     {
+        Debug.Log("ONKEYWORDDETECTED");
         for (int i = 0; i < foundWords.Count; ++i)
         {
-            GameObject prefab = (GameObject)Resources.Load(foundWords[i], typeof(GameObject));
+            // GameObject prefab = (GameObject)Resources.Load(foundWords[i], typeof(GameObject));
             Vector3 spawnLocation = defaultSpawnLocation;
-            spawnLocation.y += spawnSpacing * i;
-            Instantiate(prefab, spawnLocation, Quaternion.identity);
+            spawnLocation.x += spawnSpacing * i;
+            // Instantiate(prefab, spawnLocation, Quaternion.identity);
+            PhotonNetwork.Instantiate(foundWords[i], spawnLocation, Quaternion.identity);
         }
     }
 }
