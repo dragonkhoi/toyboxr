@@ -120,11 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
---- !u!1 &802771325
-=======
 --- !u!1 &166062089
->>>>>>> jihee
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,12 +128,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
-  - component: {fileID: 802771327}
-  - component: {fileID: 802771326}
-  m_Layer: 0
-  m_Name: DictationController
-=======
   - component: {fileID: 166062090}
   - component: {fileID: 166062092}
   - component: {fileID: 166062091}
@@ -266,49 +256,32 @@ GameObject:
   - component: {fileID: 455299935}
   m_Layer: 0
   m_Name: Speech Listener
->>>>>>> jihee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
---- !u!114 &802771326
-=======
 --- !u!114 &455299935
->>>>>>> jihee
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 802771325}
-=======
   m_GameObject: {fileID: 455299934}
->>>>>>> jihee
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6eb94d5dcbe8a47fcbbfd7280ea7e9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  recognitions: []
---- !u!4 &802771327
-=======
   RecognizedText: {fileID: 166062091}
   ExtractedText: {fileID: 1245388838}
   keywordsFile: {fileID: 4900000, guid: b8cbde9634a1fe44fa4930a87df09998, type: 3}
 --- !u!4 &455299936
->>>>>>> jihee
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 802771325}
-=======
   m_GameObject: {fileID: 455299934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6840996, y: -0.09714043, z: 4.503417}
@@ -376,7 +349,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541638460}
->>>>>>> jihee
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -384,8 +356,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &997362503
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +535,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245388836}
   m_CullTransparentMesh: 0
->>>>>>> jihee
 --- !u!1 &1685016621
 GameObject:
   m_ObjectHideFlags: 0
