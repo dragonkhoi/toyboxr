@@ -1,84 +1,84 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using PolyToolkit;
+//using PolyToolkit;
 
 public class PolyInterface : MonoBehaviour
 {
-    [SerializeField] Image[] previewTiles;
-    [SerializeField] string searchQuery;
+    //[SerializeField] Image[] previewTiles;
+    //[SerializeField] string searchQuery;
 
-    bool requestInflight;
+    //bool requestInflight;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RequestAssets();
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        RequestAssets();
+    //    }
+    //}
 
-    void RequestAssets()
-    {
-        if (requestInflight)
-        {
-            Debug.LogWarning("Request denied - existing request still inflight!");
-            return;
-        }
-        Debug.Log("Requesting assets...");
+    //void RequestAssets()
+    //{
+    //    if (requestInflight)
+    //    {
+    //        Debug.LogWarning("Request denied - existing request still inflight!");
+    //        return;
+    //    }
+    //    Debug.Log("Requesting assets...");
 
-        PolyListAssetsRequest req = new PolyListAssetsRequest
-        {
-            // Search by keyword:
-            keywords = searchQuery,
-            // Only curated assets:
-            curated = true,
-            // Limit complexity to medium.
-            maxComplexity = PolyMaxComplexityFilter.SIMPLE,
-            // Only Blocks objects.
-            formatFilter = PolyFormatFilter.BLOCKS,
-            // Order from best to worst.
-            orderBy = PolyOrderBy.BEST,
-            // Up to 20 results per page.
-            pageSize = 5
-        };
+    //    PolyListAssetsRequest req = new PolyListAssetsRequest
+    //    {
+    //        // Search by keyword:
+    //        keywords = searchQuery,
+    //        // Only curated assets:
+    //        curated = true,
+    //        // Limit complexity to medium.
+    //        maxComplexity = PolyMaxComplexityFilter.SIMPLE,
+    //        // Only Blocks objects.
+    //        formatFilter = PolyFormatFilter.BLOCKS,
+    //        // Order from best to worst.
+    //        orderBy = PolyOrderBy.BEST,
+    //        // Up to 20 results per page.
+    //        pageSize = 5
+    //    };
 
-        // Send the request.
-        requestInflight = true;
-        PolyApi.ListAssets(req, ListAssetsCallback);
-    }
+    //    // Send the request.
+    //    requestInflight = true;
+    //    PolyApi.ListAssets(req, ListAssetsCallback);
+    //}
 
-    void ListAssetsCallback(PolyStatusOr<PolyListAssetsResult> result)
-    {
-        if (!result.Ok)
-        {
-            Debug.LogError("Failed to list assets. Reason: " + result.Status);
-            return;
-        }
-        Debug.Log("Successfully listing asset!s");
+    //void ListAssetsCallback(PolyStatusOr<PolyListAssetsResult> result)
+    //{
+    //    if (!result.Ok)
+    //    {
+    //        Debug.LogError("Failed to list assets. Reason: " + result.Status);
+    //        return;
+    //    }
+    //    Debug.Log("Successfully listing asset!s");
 
-        for (int i = 0; i < previewTiles.Length; ++i)
-        {
-            Debug.Log("ASSET: " + result.Value.assets[i].displayName);
-            PolyApi.FetchThumbnail(result.Value.assets[i], FetchThumbnailCallback);
-        }
+    //    for (int i = 0; i < previewTiles.Length; ++i)
+    //    {
+    //        Debug.Log("ASSET: " + result.Value.assets[i].displayName);
+    //        PolyApi.FetchThumbnail(result.Value.assets[i], FetchThumbnailCallback);
+    //    }
 
-        requestInflight = false;
-    }
+    //    requestInflight = false;
+    //}
 
-    void FetchThumbnailCallback(PolyAsset asset, PolyStatus status)
-    {
-        if (!status.ok)
-        {
-            Debug.LogError("Failed to get thumbnail for: " + asset.displayName);
-            return;
-        }
+    //void FetchThumbnailCallback(PolyAsset asset, PolyStatus status)
+    //{
+    //    if (!status.ok)
+    //    {
+    //        Debug.LogError("Failed to get thumbnail for: " + asset.displayName);
+    //        return;
+    //    }
 
-        var texture = asset.thumbnailTexture;
-        previewTiles[0].sprite = Sprite.Create(
-            texture,
-            new Rect(0, 0, texture.width, texture.height),
-            new Vector2(0.5f, 0.5f));
-    }
+    //    var texture = asset.thumbnailTexture;
+    //    previewTiles[0].sprite = Sprite.Create(
+    //        texture,
+    //        new Rect(0, 0, texture.width, texture.height),
+    //        new Vector2(0.5f, 0.5f));
+    //}
 
 
 
