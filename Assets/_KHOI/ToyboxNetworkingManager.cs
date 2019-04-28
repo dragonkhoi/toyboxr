@@ -57,5 +57,6 @@ public class ToyboxNetworkingManager : MonoBehaviourPunCallbacks
     {
         base.OnDisconnected(cause);
         Debug.Log("PUN DISCONNECTED");
+        PhotonNetwork.ConnectUsingSettings();
     }
 }
